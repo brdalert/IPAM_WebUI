@@ -9,7 +9,7 @@ import { Records } from '../app/dialog-overview/dialog-overview.component';
 })
 export class SampleService {
 
-  HostLocation: string = 'http://viper.cs.ksu.edu:8080/'
+  HostLocation: string = 'http://localhost:8000/'
   endpoint: string 
   httpOptions = {
     headers: new HttpHeaders({

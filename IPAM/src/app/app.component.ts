@@ -39,7 +39,7 @@ export class AppComponent {
 
   
   AvailableRecordTypes: String[] = []
-  AvailabeRecords: Records[] = []
+  availabelRecords: Records[] = []
   AllRecordList: Records[] =[]
   hostRecords: Records[] = []
   new_record: Records = {
@@ -90,7 +90,7 @@ export class AppComponent {
       res.forEach(element => {
         if(this.AvailableRecordTypes.indexOf(element.record_type) < 0){
           this.AvailableRecordTypes.push(element.record_type);
-          this.AvailabeRecords.push(element);
+          this.availabelRecords.push(element);
         }
       });
       let records = res.find(x => x.host == row['host_id']);
@@ -117,7 +117,7 @@ export class AppComponent {
     .toPromise()
     .then((res) => {
       res.forEach(x => {           
-        let item = new IPResultSet(x.id != null ? x.id : null , x.ipv4, x.ipv6, x.mac_addr != null ? x.mac_addr.adapter.host.host_name: null, x.mac_addr != null ? x.mac_addr.id : null, x.mac_addr != null ? x.mac_addr.mac : null, x.mac_addr !== null ? x.mac_addr.adapter.id : null, x.mac_addr!== null ? x.mac_addr.adapter.adapter_name : null, x.subnet !== null ? x.subnet.id : null, x.subnet !== null ? x.subnet.subnet_name : null, null, x.mac_addr !== null ? x.mac_addr.adapter.host.id : null, null, this.AvailableRecords);        
+        let item = new IPResultSet(x.id != null ? x.id : null , x.ipv4, x.ipv6, x.mac_addr != null ? x.mac_addr.adapter.host.host_name: null, x.mac_addr != null ? x.mac_addr.id : null, x.mac_addr != null ? x.mac_addr.mac : null, x.mac_addr !== null ? x.mac_addr.adapter.id : null, x.mac_addr!== null ? x.mac_addr.adapter.adapter_name : null, x.subnet !== null ? x.subnet.id : null, x.subnet !== null ? x.subnet.subnet_name : null, null, x.mac_addr !== null ? x.mac_addr.adapter.host.id : null, null, this.availabelRecords);        
         this.ipResultSet.push(item)
       })  
       this.dataSource = this.ipResultSet;  
@@ -211,13 +211,13 @@ export class AppComponent {
       console.log('update ip called')
     });
   }
-  UpdateMac(mac_id, mac_address): void{
-    this.sampleService.PutMac(mac_id, mac_address)
-    .toPromise()
-    .then((res) => {
-      console.log('updated mac')
-    })
-  }  
+  // UpdateMac(mac_id, mac_address): void{
+  //   this.sampleService.PutMac(mac_id, mac_address)
+  //   .toPromise()
+  //   .then((res) => {
+  //     console.log('updated mac')
+  //   })
+  // }  
 
   PostRecords(host_name, ipv4?, ipv6?, mac_address?, adapter_name?, subnet_name?, record_type?): void {
     this.sampleService.PostHosts(host_name)
@@ -261,7 +261,7 @@ export class AppComponent {
 
     const dialogRef = this.dialog.open(DialogOverviewComponent, {
     width: '700px',
-    data: {ipv4: this.selectedRow['ipv4'], ipv6: this.selectedRow['ipv6'], host: this.selectedRow['host'], adapter: this.selectedRow['adapter'], mac: this.selectedRow['mac_addr'], records: this.AllRecordList, record_type: this.currentRecordData.record_type, display: this.AllRecordList.length > 0 ? true: false, AvailableRecords: this.AvailabeRecords, host_id: this.currentRecordData.host_id }
+    data: {ipv4: this.selectedRow['ipv4'], ipv6: this.selectedRow['ipv6'], host: this.selectedRow['host'], adapter: this.selectedRow['adapter'], mac: this.selectedRow['mac_addr'], records: this.AllRecordList, record_type: this.currentRecordData.record_type, display: this.AllRecordList.length > 0 ? true: false, availabelRecords: this.availabelRecords, host_id: this.currentRecordData.host_id }
     });
    
 
@@ -379,10 +379,10 @@ export class IPResultSet{
   records: any;  
   host_id: any;
   record_type: any;
-  AvailableRecords: any;
+  availabelRecords: any;
   
   
-  constructor(id, ipv4, ipv6, host, mac_id, mac_addr, adapter_id, adapter, subnet_id, subnet_name, records, host_Id, record_type, allAvailableRecords){ 
+  constructor(id, ipv4, ipv6, host, mac_id, mac_addr, adapter_id, adapter, subnet_id, subnet_name, records, host_Id, record_type, allavailabelRecords){ 
     this.ip_id = id;   
     this.ipv4 = ipv4;
     this.ipv6 = ipv6;
@@ -396,7 +396,7 @@ export class IPResultSet{
     this.records = records;
     this.host_id = host_Id;
     this.record_type = record_type;
-    this.AvailableRecords = allAvailableRecords;
+    this.availabelRecords = allavailabelRecords;
   }
 }
 
