@@ -1,0 +1,41 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="subnet_name">
+    <mat-header-cell style="font-weight: bold" *matHeaderCellDef> Subnet </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element?.subnet_name}} </mat-cell>
+  </ng-container>
+  
+  <ng-container matColumnDef="ipv4">
+    <mat-header-cell style="font-weight: bold" *matHeaderCellDef> IPV4 </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click) = "getClick('ipv4')" > {{element?.ipv4}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="ipv6">
+    <mat-header-cell style="font-weight: bold" *matHeaderCellDef> IPV6 </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click)="getClick('ipv6')"> {{element?.ipv6}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="host">
+    <mat-header-cell style="font-weight: bold" *matHeaderCellDef> Host </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click)="getClick('host')"> {{element?.host}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="mac_addr">
+    <mat-header-cell style="font-weight: bold" *matHeaderCellDef> Mac Address </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click)="getClick('mac_addr')"> {{element?.mac_addr}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="adapter">
+    <mat-header-cell style="font-weight: bold" *matHeaderCellDef> Adapter </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click)="getClick('adapter')"> {{element?.adapter}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row style="font-weight: bold" *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"></mat-row>
+</mat-table>
+
+
+
+
+
+
